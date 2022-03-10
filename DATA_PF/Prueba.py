@@ -3,7 +3,9 @@ import glob
 import pandas as pd
 import numpy as np
 from sklearn.cluster import DBSCAN
+from dotenv import load_dotenv 
 
+load_dotenv() # add this line
 name=os.getenv('NAME_')
 name=name.split(",")
 #path=[r"C:Blow_nose",r"C:Brush_hair", r"C:Drink_water"]
@@ -27,7 +29,7 @@ V=[]
 for i in range(k):
     sp = df[df['sample']==i]
     sp = sp.drop(['activity'], axis=1)
-    #sp.describe
+    #sp.describes
     V.append(sp.values)
 print(V)
 #db = DBSCAN(eps=0.3, min_samples=10).fit(V)
