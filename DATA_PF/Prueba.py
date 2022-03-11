@@ -19,17 +19,25 @@ for p in name:
     os.chdir(p)
     file_extension = '.csv'
     all_filenames = [i for i in glob.glob(f"*{file_extension}")]
+    
+    V=list()
     for f in all_filenames:
-        temp = pd.read_csv(f, names=['x', 'y', 'z'])
-        temp['sample'] = k
-        temp['activity'] = f'{p[2:]}'
-        df = df.append([temp], ignore_index=True)
-        k = k + 1
-V=[]
-for i in range(k):
-    sp = df[df['sample']==i]
-    sp = sp.drop(['activity'], axis=1)
-    #sp.describes
-    V.append(sp.values)
-print(V)
-#db = DBSCAN(eps=0.3, min_samples=10).fit(V)
+        #temp = pd.read_csv(f, names=['x', 'y', 'z'])
+        #temp['sample'] = k
+        #temp['activity'] = f'{p[2:]}'
+        df = pd.read_csv(f, header=0)
+        values = df.values
+        V.append(values)
+        #df = df.append([temp], ignore_index=True)
+        V_=np.array(V)
+    print(V_[0])
+
+
+# V=list()
+# for i in range(k):
+#     sp = df[df['sample']==i]
+#     sp = sp.drop(['activity'], axis=1)
+#     values=sp.values
+#     V.append(values)
+# print(V)
+# #db = DBSCAN(eps=0.3, min_samples=10).fit(V)
